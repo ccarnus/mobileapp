@@ -10,6 +10,11 @@
     android:theme="@style/Theme.BrightMinds"
     android:background="@color/secondary">
 
+    <include
+        layout="@layout/toolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"/>
+
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"

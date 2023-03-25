@@ -34,9 +34,6 @@ import View.UserAdapter;
 
 public class GameFragment extends Fragment {
 
-    private Button post_btn;
-    private Button get_btn;
-    private EditText api_rest_text;
 
     private String url;
     private RequestQueue mRequestQueue;
@@ -51,10 +48,6 @@ public class GameFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.url = "https://brightmindsapi.azurewebsites.net/user";
-
-        //Recycler View
-
-
     }
 
     @Override
