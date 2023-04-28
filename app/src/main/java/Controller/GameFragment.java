@@ -1,24 +1,20 @@
 package Controller;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myapplication.R;
 
@@ -47,7 +43,7 @@ public class GameFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.url = "https://brightmindsapi.azurewebsites.net/user";
+        this.url = "https://brightmindsapi.azurewebsites.net/user/leaderboard/by/score";
     }
 
     @Override
@@ -75,9 +71,10 @@ public class GameFragment extends Fragment {
                                 String username = userJson.optString("username","not defined");
                                 String role = userJson.optString("role", "not defined");
                                 String email = userJson.optString("email", "not defined");
+                                String pictureURL = userJson.optString("profilePictureUrl", "not defined");
                                 String department = userJson.optString("department", "not defined");
                                 int score = userJson.optInt("score", 0);
-                                User user = new User(email,username,role,department,score);
+                                User user = new User(email,username,role,department,score, pictureURL);
                                 userList.add(user);
                             } catch (JSONException e) {
                                 e.printStackTrace();

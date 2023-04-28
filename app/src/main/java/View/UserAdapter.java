@@ -1,13 +1,17 @@
 package View;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -33,6 +37,18 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         holder.mScoreTextView.setText(String.valueOf(user.getScore()));
         holder.mUsernameTextView.setText(String.valueOf(user.getUsername()));
         holder.mRoleTextView.setText(String.valueOf(user.getRole()));
+        Picasso picasso = Picasso.get();
+        picasso.load(user.getPictureURL()).resize(130, 130).centerCrop().into(holder.mProfileImageView, new Callback() {
+            @Override
+            public void onSuccess() {
+                Log.d("clement", "Image loaded successfully");
+            }
+
+            @Override
+            public void onError(Exception e) {
+                Log.d("clement", "Error loading image: " + e.getMessage());
+            }
+        });
     }
 
     @Override
@@ -44,12 +60,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         public TextView mScoreTextView;
         public TextView mUsernameTextView;
         public TextView mRoleTextView;
+        public ImageView mProfileImageView;
 
         public ViewHolder(View itemView) {
             super(itemView);
             mScoreTextView = itemView.findViewById(R.id.leader_board_item_score_view);
             mUsernameTextView = itemView.findViewById(R.id.leader_board_item_name_view);
             mRoleTextView = itemView.findViewById(R.id.leader_board_item_role_view);
+            mProfileImageView = itemView.findViewById(R.id.leader_board_item_profile_view);
         }
     }
 }

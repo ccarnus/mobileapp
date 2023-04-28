@@ -1,23 +1,142 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="Controller.SettingsFragment">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/settings_picture_view"
+        android:src="@drawable/shuffle"/>
 
     <Button
-        android:id="@+id/POST_view"
+        android:id="@+id/change_picture_settings_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="POST"/>
+        android:text="Change Picture"
+        android:textColor="@color/secondary"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"/>
 
     <TextView
-        android:id="@+id/text_view"
+        android:id="@+id/settings_username_display_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:text=""/>
+        android:layout_below="@+id/change_picture_settings_view"
+        android:layout_marginTop="30dp"
+        android:text="User Name: "
+        android:textColor="@color/primary"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/settings_username_edit_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/settings_username_display_view"
+        android:layout_marginBottom="0dp"
+        android:layout_toEndOf="@+id/settings_username_display_view"
+        android:text=""
+        android:textColor="@color/primary"
+        android:textSize="20dp"
+        android:padding="12dp"
+        android:inputType="text"
+        android:maxLines="1"
+        android:imeOptions="actionDone"
+        android:cursorVisible="true"/>
+
+    <TextView
+        android:id="@+id/settings_email_display_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/settings_username_display_view"
+        android:text="Email: "
+        android:textColor="@color/primary"
+        android:textSize="20dp"
+        android:layout_marginTop="30dp"/>
+
+    <EditText
+        android:id="@+id/settings_email_edit_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/settings_email_display_view"
+        android:layout_toEndOf="@+id/settings_email_display_view"
+        android:text=""
+        android:textColor="@color/primary"
+        android:textSize="20dp"
+        android:padding="12dp"
+        android:inputType="text"
+        android:maxLines="1"
+        android:imeOptions="actionDone"/>
 
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/settings_role_display_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/settings_email_display_view"
+        android:text="Role:"
+        android:textColor="@color/primary"
+        android:textSize="20dp"
+        android:layout_marginTop="30dp"/>
+
+    <EditText
+        android:id="@+id/settings_role_edit_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/settings_role_display_view"
+        android:layout_toEndOf="@+id/settings_role_display_view"
+        android:text=""
+        android:textColor="@color/primary"
+        android:textSize="20dp"
+        android:padding="12dp"
+        android:inputType="text"
+        android:maxLines="1"
+        android:imeOptions="actionDone"/>
+
+    <TextView
+        android:id="@+id/settings_department_display_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/settings_role_display_view"
+        android:text="Department: "
+        android:textColor="@color/primary"
+        android:textSize="20dp"
+        android:layout_marginTop="30dp"/>
+
+    <EditText
+        android:id="@+id/settings_department_edit_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/settings_department_display_view"
+        android:layout_toEndOf="@+id/settings_department_display_view"
+        android:text=""
+        android:textColor="@color/primary"
+        android:textSize="20dp"
+        android:padding="12dp"
+        android:inputType="text"
+        android:maxLines="1"
+        android:imeOptions="actionDone"/>
+
+    <Button
+        android:id="@+id/update_user_settings_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/settings_department_display_view"
+        android:text="Update Profile"
+        android:textColor="@color/secondary"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/button_create_cast_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/update_user_settings_view"
+        android:text="Create Cast"
+        android:textColor="@color/secondary"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"/>
+
+
+</RelativeLayout>
