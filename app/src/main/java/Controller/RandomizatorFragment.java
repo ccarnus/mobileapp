@@ -55,6 +55,13 @@ public class RandomizatorFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        adapter.releasePlayer();
+    }
+
+
     private void getCast() {
         String url = "https://brightmindsapi.azurewebsites.net/cast";
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
@@ -88,7 +95,7 @@ public class RandomizatorFragment extends Fragment {
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
                         }
-                        CastAdapter adapter = new CastAdapter(cast_list, getActivity().getApplicationContext());
+                        adapter = new CastAdapter(cast_list, getActivity().getApplicationContext());
                         Log.d("clement",String.valueOf(cast_list.size()));
                         view_pager.setAdapter(adapter);
                         view_pager.setPadding(10,0,10,0);

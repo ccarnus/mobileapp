@@ -24,8 +24,7 @@ public class CastAdapter extends RecyclerView.Adapter<CastAdapter.ViewHolder> {
 
     private List<Cast> mCastList;
     private Context mcontext;
-    public SimpleExoPlayer player;
-
+    private SimpleExoPlayer mPlayer;
 
     public CastAdapter(List<Cast> castList, Context context) {
         mCastList = castList;
@@ -50,25 +49,15 @@ public class CastAdapter extends RecyclerView.Adapter<CastAdapter.ViewHolder> {
         holder.mUniversity.setText(String.valueOf(cast.getUniversity()));
 
         /* player */
-        holder.mPlayer = new SimpleExoPlayer.Builder(mcontext).build();
-        holder.mVideoView.setPlayer(holder.mPlayer);
+        mPlayer = new SimpleExoPlayer.Builder(mcontext).build();
+        holder.mVideoView.setPlayer(mPlayer);
         holder.mVideoView.setKeepScreenOn(true);
-        /*holder.mPlayer.addListener(new Player.Listener() {
-            @Override
-            public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
-                if (playbackState == Player.STATE_BUFFERING) {
-                    holder.talk_progressbar.setVisibility(View.VISIBLE);
-                } else if (playbackState == Player.STATE_READY) {
-                    holder.talk_progressbar.setVisibility(View.GONE);
-                }
-            }
-        });*/
 
         /* Video */
         MediaItem mediaItem = MediaItem.fromUri("https://"+cast.getCasturl().split("//")[1]);
-        holder.mPlayer.setMediaItem(mediaItem);
+        mPlayer.setMediaItem(mediaItem);
         holder.mVideoView.setUseController(false);
-        holder.mPlayer.prepare();
+        mPlayer.prepare();
 
         holder.mVideoView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -112,6 +101,13 @@ public class CastAdapter extends RecyclerView.Adapter<CastAdapter.ViewHolder> {
         return mCastList.size();
     }
 
+    public void releasePlayer() {
+        if (mPlayer != null) {
+            mPlayer.release();
+            mPlayer = null;
+        }
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTitleTextView;
         public TextView mCategoryTextView;
@@ -121,7 +117,6 @@ public class CastAdapter extends RecyclerView.Adapter<CastAdapter.ViewHolder> {
         public TextView mUniversity;
         public TextView mBrightmindid;
         public PlayerView mVideoView;
-        public SimpleExoPlayer mPlayer;
         public boolean is_playing;
 
         public ViewHolder(View itemView) {
