@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="universities">
+        <item>Georgia Tech</item>
+        <item>Stanford</item>
+        <item>Harvard</item>
+        <item>Berkley</item>
+        <item>Massachusset Institute of Technology</item>
+        <item>California Institute of Technology</item>
+    </string-array>
+</resources>

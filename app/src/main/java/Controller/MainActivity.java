@@ -1,13 +1,13 @@
 package Controller;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.myapplication.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -26,8 +26,10 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //Fragments definition
-        GameFragment labFragment = new GameFragment();
-        CastFragment profileFragment = new CastFragment();
+        LeaderBoardFragment leaderboardfragment = new LeaderBoardFragment();
+        TrackFragment trackfragment = new TrackFragment();
+        LibraryFragment libraryfragment = new LibraryFragment();
+        CastFragment castfragment = new CastFragment();
 
         //Bottom Navigation
         bottom_navigation_main = findViewById(R.id.bottom_navigation_main_view);
@@ -35,11 +37,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.bottom_nav_menu_game:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,labFragment).commit();
+                    case R.id.bottom_nav_menu_library:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,libraryfragment).commit();
                         return true;
                     case R.id.bottom_nav_menu_cast:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,profileFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,castfragment).commit();
+                        return true;
+                    case R.id.bottom_nav_menu_Leaderboard:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,leaderboardfragment).commit();
+                        return true;
+                    case R.id.bottom_nav_menu_track:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,trackfragment).commit();
                         return true;
                     default: return true;
                 }
@@ -62,10 +70,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        SettingsFragment settingsFragment = new SettingsFragment();
+        Intent intent_settings = new Intent(MainActivity.this, SettingsActivity.class);
         switch (item.getItemId()) {
             case R.id.toolbar_menu_settings_view:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,settingsFragment).commit();
+                startActivity(intent_settings);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

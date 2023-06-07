@@ -2,10 +2,12 @@ package View;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,9 +20,12 @@ import com.google.android.exoplayer2.ui.PlayerView;
 
 import java.util.List;
 
+import Controller.CommentActivity;
 import Model.Cast;
 
 public class CastAdapter extends RecyclerView.Adapter<CastAdapter.ViewHolder> {
+
+    public String MY_USER_NAME = "test@gatech.edu";
 
     private List<Cast> mCastList;
     private Context mcontext;
@@ -41,12 +46,38 @@ public class CastAdapter extends RecyclerView.Adapter<CastAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Cast cast = mCastList.get(position);
         holder.mTitleTextView.setText(String.valueOf(cast.getTitle()));
-        holder.mCategoryTextView.setText(String.valueOf(cast.getCategory()));
-        holder.mDepartmentTextView.setText(String.valueOf(cast.getDepartment()));
-        holder.mTypeTextView.setText(String.valueOf(cast.getType()));
-        holder.mDescriptionTextView.setText(String.valueOf(cast.getDescription()));
-        holder.mBrightmindid.setText(String.valueOf(cast.getBrightmindid()));
-        holder.mUniversity.setText(String.valueOf(cast.getUniversity()));
+        //setting number of likes and comments
+        holder.mLikes.setText(String.valueOf(cast.getCount_likes()));
+        holder.mComments.setText(String.valueOf(cast.getCount_comments()));
+
+        //button like/comment/share
+        if(isItLiked(cast.getLikers_list(),MY_USER_NAME)){
+            holder.like_button.setImageResource(R.drawable.like_filled_ic);
+            holder.like_button.setEnabled(false);
+        }
+        holder.like_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cast.LikeCast(mcontext.getApplicationContext(), cast.getId(), MY_USER_NAME);
+                holder.like_button.setImageResource(R.drawable.like_filled_ic);
+                holder.like_button.setEnabled(false);
+                holder.mLikes.setText(String.valueOf(cast.getCount_likes()+1));
+            }
+        });
+        holder.comment_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mcontext, CommentActivity.class);
+                intent.putExtra("cast",cast);
+                mcontext.startActivity(intent);
+            }
+        });
+        holder.share_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cast.ShareCast(mcontext.getApplicationContext());
+            }
+        });
 
         /* player */
         mPlayer = new SimpleExoPlayer.Builder(mcontext).build();
@@ -54,7 +85,7 @@ public class CastAdapter extends RecyclerView.Adapter<CastAdapter.ViewHolder> {
         holder.mVideoView.setKeepScreenOn(true);
 
         /* Video */
-        MediaItem mediaItem = MediaItem.fromUri("https://"+cast.getCasturl().split("//")[1]);
+        MediaItem mediaItem = MediaItem.fromUri("http://"+cast.getCasturl().split("//")[1]);
         mPlayer.setMediaItem(mediaItem);
         holder.mVideoView.setUseController(false);
         mPlayer.prepare();
@@ -101,6 +132,16 @@ public class CastAdapter extends RecyclerView.Adapter<CastAdapter.ViewHolder> {
         return mCastList.size();
     }
 
+    public Boolean isItLiked(String[] name_list, String name){
+        Boolean is_liked = false;
+        for(String currentEmail: name_list){
+            if(currentEmail.equals(name)){
+                is_liked = true;
+            }
+        }
+        return is_liked;
+    }
+
     public void releasePlayer() {
         if (mPlayer != null) {
             mPlayer.release();
@@ -110,25 +151,21 @@ public class CastAdapter extends RecyclerView.Adapter<CastAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTitleTextView;
-        public TextView mCategoryTextView;
-        public TextView mDepartmentTextView;
-        public TextView mDescriptionTextView;
-        public TextView mTypeTextView;
-        public TextView mUniversity;
-        public TextView mBrightmindid;
+        public TextView mLikes;
+        public TextView mComments;
         public PlayerView mVideoView;
         public boolean is_playing;
+        public ImageButton comment_button, share_button, like_button;
 
         public ViewHolder(View itemView) {
             super(itemView);
             is_playing = false;
             mTitleTextView = itemView.findViewById(R.id.cast_title_view);
-            mCategoryTextView = itemView.findViewById(R.id.cast_category_view);
-            mDepartmentTextView = itemView.findViewById(R.id.cast_department_view);
-            mDescriptionTextView = itemView.findViewById(R.id.cast_description_view);
-            mTypeTextView = itemView.findViewById(R.id.cast_type_view);
-            mUniversity = itemView.findViewById(R.id.cast_university_view);
-            mBrightmindid = itemView.findViewById(R.id.cast_brightmindid_view);
+            mLikes = itemView.findViewById(R.id.number_of_likes_view);
+            mComments = itemView.findViewById(R.id.number_of_comments_view);
+            comment_button = itemView.findViewById(R.id.commentIcon);
+            share_button = itemView.findViewById(R.id.shareIcon);
+            like_button = itemView.findViewById(R.id.likeIcon);
             mVideoView = itemView.findViewById(R.id.cast_video_view);
         }
     }

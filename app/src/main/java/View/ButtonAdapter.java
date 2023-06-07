@@ -34,6 +34,20 @@ public class ButtonAdapter extends ArrayAdapter<String> {
         ImageButton button = view.findViewById(R.id.button_category_cast);
         //button.setText(mButtonNames[position]);
         button.setBackgroundResource(mButtonDrawables[position]);
+        switch (mButtonNames[position]){
+            case "Robotics":
+                button.setImageResource(R.drawable.ic_robot);
+                break;
+            case "Mechanics":
+                button.setImageResource(R.drawable.ic_mechanics);
+                break;
+            case "Economics":
+                button.setImageResource(R.drawable.ic_economics);
+                break;
+            case "Artificial Intelligence":
+                button.setImageResource(R.drawable.ic_artificial_intelligence);
+                break;
+        }
 
         return view;
     }

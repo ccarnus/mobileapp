@@ -28,22 +28,21 @@ import java.util.List;
 import Model.User;
 import View.UserAdapter;
 
-public class GameFragment extends Fragment {
+public class LeaderBoardFragment extends Fragment {
 
 
     private String url;
     private RequestQueue mRequestQueue;
-
     private RecyclerView recyclerViewLeaderboard;
 
-    public GameFragment() {
+    public LeaderBoardFragment() {
         // Required empty public constructor
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.url = "https://brightmindsapi.azurewebsites.net/user/leaderboard/by/score";
+        this.url = "http://3.17.219.54/user/leaderboard/by/score";
     }
 
     @Override

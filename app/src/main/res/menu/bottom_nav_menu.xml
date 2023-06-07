@@ -4,11 +4,21 @@
     <item
         android:id="@+id/bottom_nav_menu_cast"
         android:title="Cast"
-        android:icon="@drawable/game_section"/>
+        android:icon="@drawable/cast_ic"/>
 
     <item
-        android:id="@+id/bottom_nav_menu_game"
-        android:title="Game"
-        android:icon="@drawable/share_section"/>
+        android:id="@+id/bottom_nav_menu_library"
+        android:title="Library"
+        android:icon="@drawable/library_ic"/>
+
+    <item
+        android:id="@+id/bottom_nav_menu_track"
+        android:title="Track"
+        android:icon="@drawable/track_ic"/>
+
+    <item
+        android:id="@+id/bottom_nav_menu_Leaderboard"
+        android:title="Leader Board"
+        android:icon="@drawable/leaderboard_ic"/>
 
 </menu>

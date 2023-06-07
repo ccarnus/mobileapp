@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,7 +15,22 @@
         android:theme="@style/Theme.BrightMinds"
         android:usesCleartextTraffic="true">
         <activity
-            android:name="Controller.MainActivity"
+            android:name=".CommentActivity"
+            android:exported="false"
+            android:label="@string/title_activity_comment"
+            android:theme="@style/Theme.BrightMinds.NoActionBar" />
+        <activity
+            android:name=".CreateCastActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RandomizatorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_settings" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

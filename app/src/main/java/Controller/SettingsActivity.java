@@ -1,16 +1,13 @@
 package Controller;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -26,7 +23,7 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class SettingsFragment extends Fragment {
+public class SettingsActivity extends AppCompatActivity {
 
     private Button update_button;
     private ImageView profile_picture_view;
@@ -42,49 +39,31 @@ public class SettingsFragment extends Fragment {
     private String role;
     private String pictureUrl;
     private RequestQueue mRequestQueue;
-    public CreateCastFragment createCastFragment = new CreateCastFragment();
-
-    public SettingsFragment() {
-        // Required empty public constructor
-    }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
+        setContentView(R.layout.activity_settings);
 
-    @SuppressLint("MissingInflatedId")
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_settings, container, false);
-        update_button = view.findViewById(R.id.update_user_settings_view);
-        username_edit_text = view.findViewById(R.id.settings_username_edit_text_view);
-        role_edit_text = view.findViewById(R.id.settings_role_edit_text_view);
-        department_edit_text = view.findViewById(R.id.settings_department_edit_text_view);
-        email_edit_text = view.findViewById(R.id.settings_email_edit_text_view);
-        profile_picture_view = view.findViewById(R.id.settings_picture_view);
-        change_picture = view.findViewById(R.id.change_picture_settings_view);
-        create_cast = view.findViewById(R.id.button_create_cast_view);
+        update_button = findViewById(R.id.update_user_settings_view);
+        username_edit_text = findViewById(R.id.settings_username_edit_text_view);
+        role_edit_text = findViewById(R.id.settings_role_edit_text_view);
+        department_edit_text = findViewById(R.id.settings_department_edit_text_view);
+        email_edit_text = findViewById(R.id.settings_email_edit_text_view);
+        profile_picture_view = findViewById(R.id.settings_picture_view);
+
         update_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 updateUser();
             }
         });
-        create_cast.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,createCastFragment).commit();
-            }
-        });
 
         getUser();
-
-        return view;
     }
 
-    private void updateUser(){
-        String url = "https://brightmindsapi.azurewebsites.net/user/642e1977382c3690204cdbc6";
+    private void updateUser() {
+        String url = "http://3.17.219.54:3000/user/6451cab97522e1e7a212fadc";
 
         // Create a new JsonObject to hold the user data to be updated
         JSONObject userData = new JSONObject();
@@ -110,26 +89,24 @@ public class SettingsFragment extends Fragment {
                 });
 
         // Add the request to the request queue using the Volley library
-        Volley.newRequestQueue(getActivity().getApplicationContext()).add(putRequest);
+        Volley.newRequestQueue(SettingsActivity.this).add(putRequest);
     }
 
-    private void getUser(){
-
-        String url = "https://brightmindsapi.azurewebsites.net/user/642ec3c9a703929206a2e65f";
-        mRequestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
+    private void getUser() {
+        String url = "http://3.17.219.54:3000/user/6451cab97522e1e7a212fadc";
+        mRequestQueue = Volley.newRequestQueue(SettingsActivity.this);
         StringRequest request_get = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            Log.d("clement",String.valueOf(jsonObject));
-                            email = jsonObject.optString("email","");
-                            department = jsonObject.optString("department","");
-                            username = jsonObject.optString("username","");
-                            role = jsonObject.optString("role","");
-                            pictureUrl = jsonObject.optString("profilePictureUrl","");
+                            Log.d("clement", String.valueOf(jsonObject));
+                            email = jsonObject.optString("email", "");
+                            department = jsonObject.optString("department", "");
+                            username = jsonObject.optString("username", "");
+                            role = jsonObject.optString("role", "");
+                            pictureUrl = jsonObject.optString("profilePictureUrl", "");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -139,14 +116,13 @@ public class SettingsFragment extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.d("clement",String.valueOf(error));
+                        Log.d("clement", String.valueOf(error));
                     }
                 });
         mRequestQueue.add(request_get);
-
     }
 
-    private void updateWithUser(){
+    private void updateWithUser() {
         username_edit_text.setText(username);
         role_edit_text.setText(role);
         email_edit_text.setText(email);
@@ -164,5 +140,4 @@ public class SettingsFragment extends Fragment {
             }
         });
     }
-
 }

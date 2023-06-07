@@ -18,7 +18,7 @@ public class RetrofitBuilder {
                 .build();
         if(retrofit ==null){
             retrofit = new Retrofit.Builder()
-                    .baseUrl("https://brightmindsapi.azurewebsites.net/")
+                    .baseUrl("http://3.17.219.54/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(okHttpClient)
                     .build();

@@ -3,12 +3,10 @@
     <style name="Theme.BrightMinds" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary</item>
-        <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/secondary</item>
-        <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/secondary</item>
         <!-- Customize your theme here. -->
     </style>
 
@@ -18,8 +16,12 @@
     </style>
 
     <style name="ClickableView">
-        <item name="colorControlHighlight">@android:color/darker_gray</item>
+        <item name="colorControlHighlight">@color/primary</item>
         <item name="android:background">?selectableItemBackgroundBorderless</item>
     </style>
+
+    <style name="Theme.BrightMinds.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.BrightMinds.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

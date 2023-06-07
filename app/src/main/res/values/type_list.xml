@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="type">
+        <item>Breakthrough !</item>
+        <item>General Thoughts</item>
+        <item>Progress</item>
+        <item>Lecture</item>
+    </string-array>
+</resources>

@@ -3,82 +3,108 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.google.android.exoplayer2.ui.PlayerView
+        android:id="@+id/cast_video_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:id="@+id/bannerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/cast_item_banner"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:elevation="8dp"
+        android:padding="8dp">
+
+        <!-- Like button -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/likeIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/like_ic"
+
+                android:background="@drawable/button_cast_like_background"/>
+
+            <TextView
+                android:id="@+id/number_of_likes_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_marginStart="4dp"
+                android:textColor="@color/primary" />
+        </LinearLayout>
+
+        <!-- Share button -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/shareIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/share_ic"
+                android:background="@drawable/button_cast_like_background"/>
+
+            <TextView
+                android:id="@+id/number_of_shares_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_marginStart="4dp"
+                android:textColor="@color/primary" />
+        </LinearLayout>
+
+        <!-- Comment button -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/commentIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/comment_ic"
+                android:background="@drawable/button_cast_like_background"/>
+
+            <TextView
+                android:id="@+id/number_of_comments_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_marginStart="4dp"
+                android:textColor="@color/primary" />
+        </LinearLayout>
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/cast_title_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Title"
-        android:textColor="@color/primary"
-        android:textSize="25dp"
+        android:textColor="@color/secondary"
+        android:textSize="30dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"/>
-
-    <com.google.android.exoplayer2.ui.PlayerView
-        android:id="@+id/cast_video_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/cast_title_view"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:id="@+id/cast_description_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cast_video_view"
-        android:layout_marginTop="5dp"
-        android:text="Description"
-        android:textColor="@color/primary"
-        android:textSize="16dp" />
-
-    <TextView
-        android:id="@+id/cast_department_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cast_description_view"
-        android:layout_marginTop="5dp"
-        android:text="Department"
-        android:textColor="@color/primary"
-        android:textSize="16dp" />
-
-    <TextView
-        android:id="@+id/cast_type_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cast_department_view"
-        android:layout_marginTop="5dp"
-        android:text="Type"
-        android:textColor="@color/primary"
-        android:textSize="16dp" />
-
-    <TextView
-        android:id="@+id/cast_category_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cast_type_view"
-        android:layout_marginTop="5dp"
-        android:text="Category"
-        android:textColor="@color/primary"
-        android:textSize="16dp" />
-
-    <TextView
-        android:id="@+id/cast_brightmindid_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_below="@+id/cast_category_view"
-        android:text="Brightmindsid"
-        android:textColor="@color/primary"
-        android:textSize="16dp"/>
-
-    <TextView
-        android:id="@+id/cast_university_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_below="@+id/cast_brightmindid_view"
-        android:text="University"
-        android:textColor="@color/primary"
-        android:textSize="16dp"/>
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textColorHighlight="@color/primary"/>
 
 </RelativeLayout>
