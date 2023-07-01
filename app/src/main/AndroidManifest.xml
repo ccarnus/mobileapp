@@ -15,22 +15,22 @@
         android:theme="@style/Theme.BrightMinds"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".CommentActivity"
+            android:name="Controller.CommentActivity"
             android:exported="false"
             android:label="@string/title_activity_comment"
             android:theme="@style/Theme.BrightMinds.NoActionBar" />
         <activity
-            android:name=".CreateCastActivity"
+            android:name="Controller.CreateCastActivity"
             android:exported="false" />
         <activity
-            android:name=".RandomizatorActivity"
+            android:name="Controller.RandomizatorActivity"
             android:exported="false" />
         <activity
-            android:name=".SettingsActivity"
+            android:name="Controller.SettingsActivity"
             android:exported="false"
             android:label="@string/title_activity_settings" />
         <activity
-            android:name=".MainActivity"
+            android:name="Controller.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

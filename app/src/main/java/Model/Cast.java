@@ -176,15 +176,44 @@ public class Cast implements Serializable {
         Volley.newRequestQueue(context).add(postRequest);
     }
 
-    public void CommentCast(Context context) {
-        Toast.makeText(context, "Cast Comment in progress", Toast.LENGTH_SHORT).show();
+    public interface CommentCastCallback {
+        void onCommentCastSuccess();
+        void onCommentCastFailure();
+    }
+
+    public void CommentCast(Context context, String author, String content, CommentCastCallback commentCastCallback) {
+        String url = "http://3.17.219.54:3000/cast/comment/" + id;
+
+        // Create a new JsonObject to hold the user data to be updated
+        JSONObject userData = new JSONObject();
+        try {
+            userData.put("author", author);
+            userData.put("content", content);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        // Create a new JsonObjectRequest with the data and the endpoint
+        JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.POST, url, userData,
+                response -> {
+                    // Success response
+                    Log.d("Response", "Comment added");
+                    commentCastCallback.onCommentCastSuccess();
+                },
+                error -> {
+                    // Error response
+                    Log.e("Response Error", error.getMessage());
+                });
+
+        // Add the request to the request queue using the Volley library
+        Volley.newRequestQueue(context).add(postRequest);
     }
 
     public void ShareCast(Context context) {
         Toast.makeText(context, "Cast Share in progress", Toast.LENGTH_SHORT).show();
     }
 
-    public static class Comment {
+    public static class Comment implements Serializable{
         private String author;
         private String content;
 

@@ -4,10 +4,11 @@
     android:layout_height="match_parent"
     tools:context="Controller.TrackFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
+        android:id="@+id/track_category_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:divider="@null"
+        android:dividerHeight="0dp" />
 
 </FrameLayout>

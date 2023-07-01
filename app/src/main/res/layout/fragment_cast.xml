@@ -50,6 +50,9 @@
         android:layout_below="@+id/cast_fragment_category_title_view"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="-5dp" />
+        android:layout_marginBottom="15dp"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        />
 
 </RelativeLayout>

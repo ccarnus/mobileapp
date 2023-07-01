@@ -69,6 +69,7 @@ public class CastAdapter extends RecyclerView.Adapter<CastAdapter.ViewHolder> {
             public void onClick(View view) {
                 Intent intent = new Intent(mcontext, CommentActivity.class);
                 intent.putExtra("cast",cast);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mcontext.startActivity(intent);
             }
         });
